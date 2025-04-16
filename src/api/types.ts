@@ -235,13 +235,26 @@ export interface Block {
    * More information on the channel author
    */
   user: User;
-  /**
-   * An array of User representations of each of the channels the block appears in
-   */
+
   connections?: Connection[];
 
   visibility: "public" | "private";
+
   slug: string;
+
+  attachment?: Attachment;
+}
+
+/**
+ * Attachment type
+ */
+export interface Attachment {
+  file_name: string;
+  file_size: number;
+  file_size_display: string;
+  content_type: string;
+  extension: string;
+  url: string;
 }
 
 /**

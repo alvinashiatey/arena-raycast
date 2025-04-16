@@ -5,6 +5,7 @@ import { ImageBlockView } from "./image";
 import { ChannelView } from "./channel";
 import { CreateBlockView } from "./createBlock";
 import { useMemo } from "react";
+import { downloadFile } from "../utils/download";
 
 interface BlockActionsProps {
   block?: Block;
@@ -12,12 +13,10 @@ interface BlockActionsProps {
 }
 
 export function BlockActions({ block, channel }: BlockActionsProps) {
-  // Memoize the URL to prevent unnecessary recalculations
   const url = useMemo(() => {
     return block?.source?.url || (block?.id ? `https://www.are.na/block/${block?.id}` : undefined);
   }, [block?.source, block?.id]);
 
-  // Conditional rendering for different block types
   const renderBlockAction = () => {
     if (!block) return null;
 
@@ -44,7 +43,20 @@ export function BlockActions({ block, channel }: BlockActionsProps) {
           <Action.Push icon={{ source: "text-icon.svg" }} title="View Text" target={<TextBlockView block={block} />} />
         );
       case "Image":
-        return <Action.Push icon={Icon.Image} title="View Image" target={<ImageBlockView block={block} />} />;
+        return (
+          <>
+            <Action.Push icon={Icon.Image} title="View Image" target={<ImageBlockView block={block} />} />
+            <Action title="Download Image" onAction={() => block.source?.url && downloadFile(block.source.url)} />
+          </>
+        );
+      case "Attachment":
+        return (
+          <Action
+            title="Download Attachment"
+            icon={Icon.Download}
+            onAction={() => block.attachment?.url && downloadFile(block.attachment.url)}
+          />
+        );
       default:
         return url ? <Action.OpenInBrowser url={url} /> : null;
     }

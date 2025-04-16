@@ -15,7 +15,6 @@ interface ChannelRes {
   open?: boolean;
 }
 
-// Define a minimal channel interface with only the required props
 export function ChannelView({ channel }: { channel: MinimalChannel }) {
   const abortable = useRef<AbortController | null>(null);
   const arena = useArena();
