@@ -1,4 +1,4 @@
-import { Grid, Image } from "@raycast/api";
+import { Grid } from "@raycast/api";
 import type { Block } from "../api/types";
 import { useRef } from "react";
 import { useArena } from "../hooks/useArena";

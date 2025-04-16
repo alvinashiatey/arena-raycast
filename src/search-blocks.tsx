@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Grid, LaunchProps } from "@raycast/api";
 import { useArena } from "./hooks/useArena";
-import type { SearchBlocksResponse, Block } from "./api/types";
+import type { SearchBlocksResponse } from "./api/types";
 import { usePromise } from "@raycast/utils";
 import { BlockActions } from "./components/BlockActions";
 import { getIconSource } from "./utils/icons";
@@ -25,16 +25,6 @@ export default function Command(props: LaunchProps<{ arguments: SearchArguments 
     },
   );
   const hasNoResults = data?.blocks.length === 0;
-
-  // Helper function to determine the appropriate icon source based on block type
-  const getIconSource = (block: Block): string => {
-    if (block.image?.thumb?.url) {
-      return block.image.thumb.url;
-    }
-
-    // Default to extension-icon.svg for other types
-    return "extension-icon.png";
-  };
 
   return (
     <Grid columns={4} isLoading={isLoading}>
