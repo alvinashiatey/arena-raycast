@@ -4,6 +4,7 @@ import { useArena } from "./hooks/useArena";
 import type { SearchBlocksResponse, Block } from "./api/types";
 import { usePromise } from "@raycast/utils";
 import { BlockActions } from "./components/BlockActions";
+import { getIconSource } from "./utils/icons";
 
 interface SearchArguments {
   query: string;
@@ -31,13 +32,8 @@ export default function Command(props: LaunchProps<{ arguments: SearchArguments 
       return block.image.thumb.url;
     }
 
-    // Use text-icon.svg for Text blocks
-    if (block.class === "Text") {
-      return "text-icon.svg";
-    }
-
     // Default to extension-icon.svg for other types
-    return "extension-icon.svg";
+    return "extension-icon.png";
   };
 
   return (
@@ -49,10 +45,7 @@ export default function Command(props: LaunchProps<{ arguments: SearchArguments 
           data?.blocks.map((block) => (
             <Grid.Item
               key={block.id || crypto.randomUUID()}
-              content={{
-                source: getIconSource(block),
-                tooltip: block.title ?? "",
-              }}
+              content={getIconSource(block)}
               title={block.title ?? ""}
               subtitle={block.class}
               actions={<BlockActions block={block} />}

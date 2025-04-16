@@ -1,3 +1,4 @@
+// This is a port of the original [arena-js](https://github.com/ivangreene/arena-js) to TypeScript, with some modifications to improve type safety and error handling.
 import os from "node:os";
 import { environment, showToast, Toast } from "@raycast/api";
 import {
@@ -16,34 +17,22 @@ import {
   User,
 } from "./types";
 
-// Remove duplicate interface definitions - they're now defined in types.ts
-
-// Strongly typed pullObject function with generics
-/**
- * Helper to pull an inner object out of returned data and preserve type safety
- * @param key The key to extract from the response object
- * @returns A function that transforms the API response
- */
 function pullObject<T>(key: string) {
   return (object: Record<string, unknown>): T => {
     if (!object || typeof object !== "object") {
       throw new Error(`Invalid object provided. Expected an object but received: ${object}`);
     }
 
-    // Extract the inner object with its correct type
     const extracted = object[key] as T;
 
     if (extracted === undefined) {
       throw new Error(`Key "${key}" not found in the provided object.`);
     }
 
-    // Create a copy of the original object without the extracted key
     const attrs = { ...object };
     delete attrs[key];
 
-    // If extracted is an array, attach attrs to each item
     if (Array.isArray(extracted)) {
-      // For array results, attach attrs to the array itself
       Object.defineProperty(extracted, "attrs", {
         value: attrs,
         enumerable: false,
@@ -51,7 +40,6 @@ function pullObject<T>(key: string) {
       return extracted;
     }
 
-    // For single objects, attach attrs to the object
     if (extracted && typeof extracted === "object") {
       Object.defineProperty(extracted, "attrs", {
         value: attrs,

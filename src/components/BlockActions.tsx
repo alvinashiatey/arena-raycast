@@ -24,7 +24,7 @@ export function BlockActions({ block, channel }: BlockActionsProps) {
       case "Channel":
         return (
           <Action.Push
-            icon={{ source: "extension-icon.svg" }}
+            icon={{ source: "extension-icon.png" }}
             title="Enter Channel"
             target={
               <ChannelView
@@ -39,9 +39,7 @@ export function BlockActions({ block, channel }: BlockActionsProps) {
           />
         );
       case "Text":
-        return (
-          <Action.Push icon={{ source: "text-icon.svg" }} title="View Text" target={<TextBlockView block={block} />} />
-        );
+        return <Action.Push icon={Icon.Paragraph} title="View Text" target={<TextBlockView block={block} />} />;
       case "Image":
         return (
           <>
