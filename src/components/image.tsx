@@ -35,7 +35,6 @@ export function ImageBlockView({ block }: ImageBlockViewProps) {
           <Detail.Metadata.Label title="Title" text={block.title || "Untitled"} />
           <Detail.Metadata.Label title="User" text={block.user?.full_name || "Unknown"} />
           <Detail.Metadata.Label title="Created At" text={formatDate(block.created_at)} />
-          <Detail.Metadata.Label title="Updated At" text={formatDate(block.updated_at)} />
           {block.description && <Detail.Metadata.Label title="Description" text={block.description} />}
         </Detail.Metadata>
       }
