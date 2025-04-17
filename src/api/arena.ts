@@ -16,6 +16,7 @@ import {
   SearchUsersResponse,
   User,
 } from "./types";
+import { showFailureToast } from "@raycast/utils";
 
 function pullObject<T>(key: string) {
   return (object: Record<string, unknown>): T => {
@@ -61,14 +62,14 @@ function arrayOrList<T>(list: T[]): T[] {
 export class Arena {
   private baseURL: string;
   private headers: Record<string, string>;
-  private requestHandler: (method: string, url: string, data: Params) => Promise<unknown>;
+  private requestHandler: (method: string, url: string, data: Params, options?: Params) => Promise<unknown>;
 
   constructor(config: ArenaOptions = {}) {
     this.baseURL = config.baseURL || "https://api.are.na/v2/";
     this.headers = {
       Accept: "*/*",
       "Content-Type": "application/json",
-      "User-Agent": `Are.na Extension /Raycast/${environment.raycastVersion} (${os.type()} ${os.release()}`,
+      "User-Agent": `Are.na Extension /Raycast/${environment.raycastVersion} (${os.type()} ${os.release()})`,
     };
 
     if (config.accessToken) {
@@ -110,15 +111,15 @@ export class Arena {
           message: `Status: ${res.status}, Message: ${errorText}`,
           style: Toast.Style.Failure,
         });
+        return null;
       }
       const responseData = await res.json();
       return responseData;
     } catch (error) {
-      showToast({
+      showFailureToast(error, {
         title: "Request error",
-        message: `Error: ${error}`,
-        style: Toast.Style.Failure,
       });
+      return null;
     }
   }
 
@@ -175,10 +176,11 @@ export class Arena {
           (response) => pullObject<User[]>("users")(response as Record<string, unknown>),
         ),
       createBlock: (opts: { content: string; source?: string }) => {
-        if (opts.content.match(/^https?:\/\//)) {
-          opts = { ...opts, source: opts.content };
+        const blockOpts = { ...opts };
+        if (blockOpts.content.match(/^https?:\/\//)) {
+          blockOpts.source = blockOpts.content;
         }
-        return this._req("POST", `channels/${identifier}/blocks`, opts) as Promise<Block>;
+        return this._req("POST", `channels/${identifier}/blocks`, blockOpts) as Promise<Block>;
       },
       deleteBlock: (blockID: string) =>
         this._req("DELETE", `channels/${identifier}/blocks/${blockID}`) as Promise<void>,

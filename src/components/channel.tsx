@@ -52,9 +52,9 @@ export function ChannelView({ channel }: { channel: MinimalChannel }) {
         />
       ) : (
         <Grid.Section title={data?.title} subtitle={data?.user}>
-          {data?.contents?.map((block, index) => (
+          {data?.contents?.map((block) => (
             <Grid.Item
-              key={index}
+              key={block.id}
               content={getIconSource(block)}
               title={block.title ?? ""}
               subtitle={`${block.user.full_name}—${block.class}`}
@@ -63,7 +63,6 @@ export function ChannelView({ channel }: { channel: MinimalChannel }) {
           ))}
         </Grid.Section>
       )}
-      {}
     </Grid>
   );
 }

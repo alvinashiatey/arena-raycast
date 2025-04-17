@@ -10,8 +10,8 @@ export const textIcon = (text: string): Image.ImageLike => {
       <text x="100"
             y="100"
             text-anchor="middle"
-            alignment-baseline="baseline"
-            textLength="20" lengthAdjust="spacingAndGlyphs"
+            alignment-baseline="middle"
+            lengthAdjust="spacingAndGlyphs"
             font-size="16" 
             fill="#000">
         ${truncatedText}

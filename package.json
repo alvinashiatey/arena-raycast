@@ -13,9 +13,9 @@
   "commands": [
     {
       "name": "search-channels",
-      "title": "Search Arena Channels",
-      "subtitle": "Search for channels on Are.na",
-      "description": "This command allows you to search for a channel on are.na",
+      "title": "Find Channels",
+      "subtitle": "Discover Are.na Channels",
+      "description": "Search and browse through public and private Are.na channels",
       "mode": "view",
       "arguments": [
         {
@@ -28,9 +28,9 @@
     },
     {
       "name": "search-blocks",
-      "title": "Search Arena Blocks",
-      "subtitle": "Search for blocks in your Are.na channels",
-      "description": "This command allows you to search for blocks on are.na",
+      "title": "Find Blocks",
+      "subtitle": "Explore Are.na Content Blocks",
+      "description": "Search for text, images, links and other content blocks across Are.na",
       "mode": "view",
       "arguments": [
         {
@@ -43,9 +43,9 @@
     },
     {
       "name": "search-users",
-      "title": "Search Arena Users",
-      "subtitle": "Search for an Are.na User",
-      "description": "This command allows you to search for users on are.na",
+      "title": "Find Users",
+      "subtitle": "Discover Are.na Members",
+      "description": "Search for people and organizations with Are.na profiles",
       "mode": "view",
       "arguments": [
         {
@@ -59,8 +59,8 @@
     {
       "name": "create-channel",
       "title": "Create Channel",
-      "subtitle": "Create an Are.na Channel",
-      "description": "This command allows you to create an are.na channel to your account",
+      "subtitle": "Add New Are.na Channel",
+      "description": "Quickly create a new public or private channel on your Are.na account",
       "mode": "view"
     }
   ],

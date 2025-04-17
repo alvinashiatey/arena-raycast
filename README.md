@@ -12,29 +12,29 @@ Here is a list of features currently available with this extension.
 
 ## Features
 
-### Search for Channels on Arena
+### Search for Channels on Are.na
 
 Quickly search for Are.na channels using the Search Are.na Channels command.
 
 ![Search For Channels](metadata/a1.png)
 
-### Search for Blocks on Arena
+### Search for Blocks on Are.na
 
 Find specific blocks effortlessly with the Search Are.na Blocks command.
 
-![Search Arena Blocks](metadata/a7.png)
+![Search Are.na Blocks](metadata/a7.png)
 
-### Search for Users on Arena
+### Search for Users on Are.na
 
 Locate Are.na users with the Search Are.na Users command.
 
-![Search Arena Users](metadata/a6.png)
+![Search Are.na Users](metadata/a6.png)
 
-### Create an Arena Channel
+### Create an Are.na Channel
 
 Create new channels directly to your Are.na account using the Create Are.na Channel command.
 
-![Create Arena Channel](metadata/a5.png)
+![Create Are.na Channel](metadata/a5.png)
 
 ### View Text and Image Blocks from Raycast
 
@@ -44,7 +44,7 @@ Easily preview text and image blocks straight from the Raycast command bar.
 
 ![View Image Block](metadata/a2.png)
 
-### Add Blocks to channels that are public
+### Add Blocks to Channels that are Public
 
 Conveniently add blocks directly to any public channel.
 

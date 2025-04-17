@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { List, LaunchProps, ActionPanel, Action, Icon } from "@raycast/api";
+import { showFailureToast } from "@raycast/utils";
 import { useArena } from "./hooks/useArena";
 import type { SearchChannelsResponse, Channel } from "./api/types";
 import { usePromise } from "@raycast/utils";
@@ -63,8 +64,13 @@ export default function Command(props: LaunchProps<{ arguments: SearchArguments 
   const { query } = props.arguments;
   const { data, isLoading } = usePromise(
     async (q: string): Promise<SearchChannelsResponse> => {
-      const response = await arena.search(q).channels({ per: 100 });
-      return response;
+      try {
+        const response = await arena.search(q).channels({ per: 100 });
+        return response;
+      } catch (error) {
+        showFailureToast(error, { title: "Failed to search channels" });
+        return { channels: [], term: q, total_pages: 0, current_page: 1, per: 100 };
+      }
     },
     [query],
     {
@@ -73,8 +79,12 @@ export default function Command(props: LaunchProps<{ arguments: SearchArguments 
   );
 
   return (
-    <List isLoading={isLoading}>
-      {data?.channels?.map((channel, index) => <ChannelListItem channel={channel} key={index} />)}
+    <List isLoading={isLoading} searchBarPlaceholder="Search channels...">
+      {data?.channels?.length === 0 ? (
+        <List.EmptyView title="No channels found" description="Try a different search term" />
+      ) : (
+        data?.channels?.map((channel) => <ChannelListItem channel={channel} key={channel.id} />)
+      )}
     </List>
   );
 }

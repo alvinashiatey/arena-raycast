@@ -1,4 +1,5 @@
 import { Detail, ActionPanel, Action, Icon } from "@raycast/api";
+import { showFailureToast } from "@raycast/utils";
 import { downloadFile } from "../utils/download";
 import type { Block } from "../api/types";
 import { useMemo } from "react";
@@ -40,12 +41,18 @@ export function ImageBlockView({ block }: ImageBlockViewProps) {
       }
       actions={
         <ActionPanel>
-          <Action.OpenInBrowser url={imageUrl || url} title="Open Image in Browser" />
+          {(imageUrl || url) ?? <Action.OpenInBrowser url={imageUrl || url} title="Open Image in Browser" />}
           <Action.CopyToClipboard content={imageUrl || ""} title="Copy Image URL" />
           <Action
             title="Download Image"
             icon={Icon.SaveDocument}
-            onAction={() => block.source?.url && downloadFile(block.source.url)}
+            onAction={async () => {
+              try {
+                if (block.source?.url) await downloadFile(block.source.url);
+              } catch (error) {
+                showFailureToast(error, { title: "Failed to download image" });
+              }
+            }}
           />
           <Action.CopyToClipboard content={url} title="Copy Block URL" />
         </ActionPanel>

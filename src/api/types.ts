@@ -102,7 +102,7 @@ export interface Image {
   thumb: { url: string };
   /**
    * Only contains url which is a URL of the display sized image
-   * (same aspect ratio as original image but with a maximim width
+   * (same aspect ratio as original image but with a maximum width
    * of 600px or a maximum height of 600px, whichever comes first)
    */
   display: { url: string };
@@ -183,7 +183,7 @@ export interface Block {
   created_at: Timestamp;
   /**
    * Represents the state of the blocks processing lifecycle.
-   * (this will most often "Available" but can also be "Failure", "Processed", "Processing")
+   * (this will most often be "Available" but can also be "Failure", "Processed", "Processing")
    */
   state: string;
   /**
@@ -227,7 +227,7 @@ export interface Block {
   source: Source | null;
   /**
    * If the Block is of class "Image" or "Link",
-   * this will be a User representation of the various sizes of images that Arena provides
+   * this will contain the various sizes of images that Arena provides
    * (in the case of a "Link" it will be a screenshot of the website).
    */
   image: Image | null;
@@ -464,7 +464,7 @@ export interface User {
   /**
    * The number of users following the user
    */
-  follower_count: string;
+  follower_count: number;
   /**
    * Currently this will be equivalent to "full_name"
    */

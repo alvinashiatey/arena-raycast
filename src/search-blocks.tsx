@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Grid, LaunchProps } from "@raycast/api";
+import { showFailureToast } from "@raycast/utils";
 import { useArena } from "./hooks/useArena";
 import type { SearchBlocksResponse } from "./api/types";
 import { usePromise } from "@raycast/utils";
@@ -16,8 +17,13 @@ export default function Command(props: LaunchProps<{ arguments: SearchArguments 
   const { query } = props.arguments;
   const { data, isLoading } = usePromise(
     async (q: string): Promise<SearchBlocksResponse> => {
-      const response = await arena.search(q).blocks({ per: 100 });
-      return response;
+      try {
+        const response = await arena.search(q).blocks({ per: 100 });
+        return response;
+      } catch (error) {
+        showFailureToast(error, { title: "Failed to search blocks" });
+        return { blocks: [], term: q, total_pages: 0, current_page: 1, per: 100 };
+      }
     },
     [query],
     {
