@@ -14,6 +14,7 @@
     {
       "name": "search-channels",
       "title": "Search Arena Channels",
+      "subtitle": "Search for channels on Are.na",
       "description": "This command allows you to search for a channel on are.na",
       "mode": "view",
       "arguments": [
@@ -28,6 +29,7 @@
     {
       "name": "search-blocks",
       "title": "Search Arena Blocks",
+      "subtitle": "Search for blocks in your Are.na channels",
       "description": "This command allows you to search for blocks on are.na",
       "mode": "view",
       "arguments": [
@@ -42,6 +44,7 @@
     {
       "name": "search-users",
       "title": "Search Arena Users",
+      "subtitle": "Search for an Are.na User",
       "description": "This command allows you to search for users on are.na",
       "mode": "view",
       "arguments": [
@@ -57,7 +60,7 @@
       "name": "create-channel",
       "title": "Create Channel",
       "subtitle": "Create an Are.na Channel",
-      "description": "This commands allows you to create an are.na channel to your account",
+      "description": "This command allows you to create an are.na channel to your account",
       "mode": "view"
     }
   ],

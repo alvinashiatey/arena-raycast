@@ -1,5 +1,5 @@
 <p align="center">
-<img width=100 src="assets/extension-icon.svg">
+<img width=100 src="assets/extension-icon.png" alt="Are.na Logo"/>
 </p>
 
 # Are.na
@@ -40,7 +40,7 @@ Create new channels directly to your Are.na account using the Create Are.na Chan
 
 Easily preview text and image blocks straight from the Raycast command bar.
 
-![Vew Text Block](metadata/a3.png)
+![View Text Block](metadata/a3.png)
 
 ![View Image Block](metadata/a2.png)
 
@@ -48,7 +48,7 @@ Easily preview text and image blocks straight from the Raycast command bar.
 
 Conveniently add blocks directly to any public channel.
 
-![Add Blcok to Public Channels](metadata/a4.png)
+![Add Block to Public Channels](metadata/a4.png)
 
 ## Getting Started
 
